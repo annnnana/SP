@@ -5,11 +5,11 @@
 class tLR{
 public:
   const tGramma& gr;
-//  типы
+//  пїЅпїЅпїЅпїЅ
   typedef short tState;
-// конструктор
-  tLR(const tGramma& agr):gr(agr){}; //создает "пустой" автомат
-// функции-члены
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+  tLR(const tGramma& agr):gr(agr){}; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ
   static tState pack(tGramma::tSymb left, tGramma::tAltind ialt){
    return -((ialt & 127)*256+left);
 }
@@ -19,7 +19,7 @@ public:
    return tGramma::tRule(t & 255, t >> 8);
 }
 
-//     добавляет одну команду (from,c)->to
+//     пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (from,c)->to
  void add(tState from, tGramma::tSymb c, tState to){
   size_t sz=1+from;
   if (sz > table.size())table.resize(sz);
@@ -34,13 +34,13 @@ public:
   for(size_t i=0; i<sz; ++i) add(from,s[i],to);
 }
 
-  tState  go(tState from, tGramma::tSymb c){//переход
+  tState  go(tState from, tGramma::tSymb c){//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if(table.empty() || from<0) return 0;
     tTransMap::iterator iter;
     tTransMap &trans=table[from];
 
     if ((iter=trans.find(c))==
-                     trans.end()) return 0;// нет перехода
+                     trans.end()) return 0;// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     return iter->second;
 }
 
@@ -58,19 +58,19 @@ public:
     return tmp;
 }
 
-  void clear(){// очищает автомат
+  void clear(){// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                           table.clear();
 }
 
-  size_t size()const{return table.size();}//выдает
-//       размер (количество состояний) автомата
+  size_t size()const{return table.size();}//пїЅпїЅпїЅпїЅпїЅпїЅ
+//       пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-// представление недетерминированного конечного
-//            автомата
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//            пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   typedef std::multimap<tGramma::tSymb,tState> tTransMap;
   typedef std::vector<tTransMap> tStateTable;
 
-  tStateTable 	table;  //таблица состояний
+  tStateTable 	table;  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
 class tLRI{
@@ -80,11 +80,11 @@ public:
   tGramma::tAltind ialt;
   tPoint point;
   tGramma::tSymb smb;
-// конструктор
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   tLRI(tGramma::tSymb aleft=0, tGramma::tAltind aialt=0,
        tPoint apoint=0, tGramma::tSymb asmb=0)
        :left(aleft), ialt(aialt), point(apoint), smb(asmb){};
-// функции-члены
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ
   tLRI& first_point (tGramma gr){
    const tGramma::tSymbstr& rp= gr.rightPart(left,ialt);
    point =0;

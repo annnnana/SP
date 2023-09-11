@@ -17,7 +17,7 @@ tParser::tParser(const char* gramma_name):lr(gr)
 
 int tParser::parse(const char* source_name){
   if(lr.size()==0){
-// испорчены управляющие таблицы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     return 1;
    }
    ferror_message.clear();
@@ -33,7 +33,7 @@ int tParser::parse(const char* source_name){
    tState state = 0;
    tState next = 0;
    const tSymb start = gr.getStart();
-   tSymb term = 1;// маркер
+   tSymb term = 1;// пїЅпїЅпїЅпїЅпїЅпїЅ
    stack.push_back(term);
    states.push_back(state);
    term = getTerm();
@@ -50,7 +50,7 @@ int tParser::parse(const char* source_name){
       break;
      }
 
-     if(next>0){//перенос
+     if(next>0){//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
        state = next;
        stack.push_back(term);
        states.push_back(state);
@@ -64,8 +64,8 @@ int tParser::parse(const char* source_name){
                     break;
                     }
          continue;
-     }//перенос
-//свертка
+     }//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
       tGramma::tRule descr = tLR::unpack(next);
       const tGramma::tAlt& alt = gr.getAlt(descr);
       size_t n = alt.rp.size();
@@ -78,20 +78,20 @@ int tParser::parse(const char* source_name){
   if(PARSER_DEBUG)
         out_prod(cout,gr,descr);
 
-// заменить основу символом левой части
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
       stack.push_back(left);
       states.push_back(state);
-// проверить условие допустимости цепочки
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
       if(stack.size() == 2 &&
          left == start &&
-         term == 1){// маркер коца
+         term == 1){// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                      lex.End();
                      return 0;
         }
    }
 //+++++++++++++++++++++++++++++++
-// добавить к сообщению об ошибке номер
-// строки и смещение
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
      buf<< endl;
      buf<< setw(4) << 
          lex.GetLineCount()<<"|"<<
