@@ -1,2 +1,0 @@
-; terr2
-(define (p? x? y?)x? y?)
